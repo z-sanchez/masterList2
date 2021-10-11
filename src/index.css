@@ -1,13 +1,91 @@
-body {
+/* Boiler Plate */
+* {
+  padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+}
+
+html {
+  line-height: 1.6;
+  font-family: "Nunito", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+h1,
+h2,
+h3,
+h4,
+h5 {
+  line-height: 1.2;
 }
+
+body {
+  height: 100vh;
+  width: 100vw;
+}
+
+/* appWrapper Grid adjustments */
+#appWrapper {
+  display: grid;
+  width: 100vw;
+  height: 100vh;
+  grid-template-columns: 20% auto 0px;
+  grid-template-rows: 15% auto;
+  column-gap: 20px;
+  background-color: #32373e;
+  /* entire app's background */
+}
+
+#header {
+  grid-column-start: 2;
+  grid-row-start: 1;
+  grid-row-end: 2;
+}
+
+#aside {
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 1;
+  grid-row-end: 3;
+  background-color: #3c424a;
+}
+
+#taskDisplay {
+  /* will have tasks overflow, just change overflow to scroll*/
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 2;
+  grid-row-end: 3;
+}
+
+.scrollAndAdd {
+  position: absolute;
+}
+
+/* General Styling for major compnent divs */
+#header {
+  /* might need to add gap between header and taskDisplay */
+  border-bottom: 1px solid #707070;
+}
+
+#headerFlex {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  justify-content: space-between;
+}
+
+#logo {
+  max-width: 100%;
+  height: 100%;
+  align-self: center;
+}
+
+#timeDisplay {
+  margin: 0 15px;
+  align-self: flex-end;
+  font-size: 5vh;
+  color: #ffffff;
+}
+
+/*# sourceMappingURL=index.css.map */
