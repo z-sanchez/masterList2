@@ -1,0 +1,195 @@
+/* Boiler Plate */
+* {
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  line-height: 1.6;
+  font-family: "Nunito", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  line-height: 1.2;
+}
+
+body {
+  height: 100vh;
+  width: 100vw;
+}
+
+/* appWrapper Grid adjustments */
+#appWrapper {
+  display: grid;
+  width: 100vw;
+  height: 100vh;
+  grid-template-columns: 20% auto 0px;
+  grid-template-rows: 15% auto;
+  column-gap: 20px;
+  background-color: #32373e;
+  /* entire app's background */
+}
+
+#header {
+  grid-column-start: 2;
+  grid-row-start: 1;
+  grid-row-end: 2;
+}
+
+#aside {
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 1;
+  grid-row-end: 3;
+  background-color: #3c424a;
+}
+
+#taskDisplay {
+  /* will have tasks overflow, just change overflow to scroll*/
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 2;
+  grid-row-end: 3;
+}
+
+.scrollAndAdd {
+  position: absolute;
+}
+
+/* General Styling for major compnent divs */
+/* Header */
+#header {
+  /* might need to add gap between header and taskDisplay */
+  border-bottom: 1px solid #707070;
+}
+
+#headerFlex {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  justify-content: space-between;
+}
+
+#logo {
+  max-width: 100%;
+  /* width gets no longer than 100% when changing */
+  height: 100%;
+  /* height can adjust to whatever to prevent warping */
+  align-self: center;
+}
+
+#timeDisplay {
+  margin: 0 15px;
+  align-self: flex-end;
+  font-size: 5vh;
+  color: #ffffff;
+}
+
+/* Aside */
+#aside {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-content: center;
+}
+
+.viewSelector {
+  display: flex;
+  flex-flow: column;
+  width: 90%;
+  margin: 0 0 10% 0;
+  padding: 2vh 0;
+  border-radius: 35px;
+  align-self: center;
+}
+
+.viewSelector__name {
+  margin: 0 0 1vh 0;
+  text-align: center;
+  font-size: 2vh;
+  color: white;
+}
+
+.viewSelector__image {
+  max-height: 7vh;
+  width: auto;
+}
+
+.viewSelector--purple {
+  background-color: #9469eb;
+}
+
+.viewSelector--blue {
+  background-color: #0099fa;
+}
+
+.viewSelector--pink {
+  background-color: #da71f9;
+}
+
+.viewSelector--on {
+  /* setting dot to correct position */
+  position: absolute;
+  height: 1.2vh;
+  top: 17.5vh;
+  left: 17vw;
+}
+
+/* Calendar */
+#calendar {
+  width: 90%;
+  height: 28%;
+  align-self: center;
+}
+
+#calendarHeader {
+  width: fit-content;
+  margin: 0 0 0 1vw;
+  padding: 0.3vh 1vw;
+  color: #dfdfdf;
+}
+
+.calendarHeader--background {
+  background-color: #fc5353;
+  border-radius: 8px;
+}
+
+#calendarHeader__date {
+  font-size: 2vh;
+}
+
+#calendarGrid {
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  row-gap: 0.5vh;
+  height: 100%;
+  background-color: #32373e;
+  border-radius: 8px;
+}
+
+#weekHeadings {
+  display: flex;
+  justify-content: space-evenly;
+  width: 95%;
+  margin: 1vh 0 0 0;
+  height: fit-content;
+  justify-self: center;
+}
+
+.calendarGrid__point--weekHeading {
+  color: #ffffff;
+}
+
+.calendarGrid__point {
+  text-align: center;
+  font-size: 1.8vh;
+  color: #ffffff;
+}
+
+/*# sourceMappingURL=index.css.map */
