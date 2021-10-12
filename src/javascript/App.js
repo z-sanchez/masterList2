@@ -5,6 +5,7 @@ import allView from "../images/allView.svg";
 import trashView from "../images/trashView.svg";
 import toggledOn from "../images/toggledOn.svg";
 import Header from "./Header";
+import Calendar from "./Calendar";
 
 function App() {
   return (
@@ -36,57 +37,7 @@ function App() {
             className="viewSelector__image"
           ></img>
         </div>
-        <div id="calendar">
-          <div id="calendarHeader" className="calendarHeader--background">
-            <p id="calendarHeader__date">October 2021</p>
-          </div>
-          <div id="calendarGrid">
-            <div id="weekHeadings">
-              <p
-                className="calendarGrid__point calendarGrid__point--weekHeading"
-                id="monday"
-              >
-                M
-              </p>
-              <p
-                className="calendarGrid__point calendarGrid__point--weekHeading"
-                id="monday"
-              >
-                T
-              </p>
-              <p
-                className="calendarGrid__point calendarGrid__point--weekHeading"
-                id="monday"
-              >
-                W
-              </p>
-              <p
-                className="calendarGrid__point calendarGrid__point--weekHeading"
-                id="monday"
-              >
-                T
-              </p>
-              <p
-                className="calendarGrid__point calendarGrid__point--weekHeading"
-                id="monday"
-              >
-                F
-              </p>
-              <p
-                className="calendarGrid__point calendarGrid__point--weekHeading"
-                id="monday"
-              >
-                S
-              </p>
-              <p
-                className="calendarGrid__point calendarGrid__point--weekHeading"
-                id="monday"
-              >
-                S
-              </p>
-            </div>
-          </div>
-        </div>
+        <Calendar />
       </aside>
       <div id="taskDisplay"></div>
       <div className="scrollAndAdd"></div>

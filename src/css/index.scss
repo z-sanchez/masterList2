@@ -137,8 +137,8 @@ body {
 .viewSelector--on {
   /* setting dot to correct position */
   position: absolute;
-  height: 1.2vh;
-  top: 17.5vh;
+  height: 0.8vh;
+  top: 19.5vh;
   left: 17vw;
 }
 
@@ -146,7 +146,7 @@ body {
 
 #calendar {
   width: 90%;
-  height: 28%;
+  height: 30%;
   align-self: center;
 }
 
@@ -168,29 +168,57 @@ body {
 
 #calendarGrid {
   display: grid;
-  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-  row-gap: 0.5vh;
+  grid-template-rows: 0.8fr 0.8fr 0.8fr 0.8fr 0.8fr 0.8fr 0.8fr;
   height: 100%;
   background-color: #32373e;
   border-radius: 8px;
 }
 
+.calendarGrid__point {
+  width: 0.8vw;
+  padding: 0.1vh 0.5vw;
+  margin: 0 0.2vw 0 0.2vw;
+  font-size: 1.8vh;
+  color: #ffffff;
+  text-align: center;
+}
+
+.calendarGrid__point:hover {
+  background-color: #fc53539f;
+  border-radius: 500px;
+}
+
+.calendarGrid__week {
+  display: flex;
+  justify-content: center;
+  width: 95%;
+  margin: 0 0 0 0.3vh;
+  height: fit-content;
+  justify-self: center;
+}
+
+.calendarGrid__point--currentDay {
+  background-color: #fc5353;
+  border-radius: 500px;
+}
+
+.calendarGrid__point-notCurrent {
+}
+
 #weekHeadings {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
   width: 95%;
-  margin: 1vh 0 0 0;
+  margin: 0.8vh 0 0 0;
   height: fit-content;
   justify-self: center;
 }
 
 .calendarGrid__point--weekHeading {
   color: #ffffff;
-
+  font-size: 1.5vh;
 }
 
-.calendarGrid__point {
-  text-align: center;
-  font-size: 1.8vh;
-  color: #ffffff;
+.calendarGrid__point--weekHeading:hover {
+  background-color: #11111100;
 }
