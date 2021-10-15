@@ -1,45 +1,27 @@
 import React from "react";
 import "../css/index.css";
-import oneView from "../images/oneView.svg";
-import allView from "../images/allView.svg";
-import trashView from "../images/trashView.svg";
-import toggledOn from "../images/toggledOn.svg";
 import Header from "./Header";
-import Calendar from "./Calendar";
+import Aside from "./Aside";
 
 function App() {
   return (
     <div id="appWrapper">
       <Header />
-      <aside id="aside">
-        <div id="oneViewSelector" className="viewSelector viewSelector--purple">
-          <p className="viewSelector__name">1 Day</p>
-          <img
-            src={oneView}
-            alt="oneView"
-            className="viewSelector__image"
-          ></img>
-          <img src={toggledOn} alt="on" className="viewSelector--on"></img>
+      <Aside />
+      <div id="taskDisplay">
+        <div className="taskDisplayDay">
+          <div className="taskDisplayDay__nameDateContainer">
+            <p className="taskDisplayDay__day">Monday</p>
+            <p className="taskDisplayDay__date">10/4</p>
+          </div>
+          <div className="taskDisplayDay__taskRow">
+            <div className="task">
+              <img className="task__doneMarker--incomplete"></img>
+              <p className="task__description"></p>
+            </div>
+          </div>
         </div>
-        <div id="oneViewSelector" className="viewSelector viewSelector--blue">
-          <p className="viewSelector__name">All</p>
-          <img
-            src={allView}
-            alt="oneView"
-            className="viewSelector__image"
-          ></img>
-        </div>
-        <div id="oneViewSelector" className="viewSelector viewSelector--pink">
-          <p className="viewSelector__name">Trash</p>
-          <img
-            src={trashView}
-            alt="oneView"
-            className="viewSelector__image"
-          ></img>
-        </div>
-        <Calendar />
-      </aside>
-      <div id="taskDisplay"></div>
+      </div>
       <div className="scrollAndAdd"></div>
     </div>
   );

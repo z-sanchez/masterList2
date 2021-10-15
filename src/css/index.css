@@ -166,7 +166,7 @@ body {
 
 #calendarGrid {
   display: grid;
-  grid-template-rows: 0.8fr 0.8fr 0.8fr 0.8fr 0.8fr 0.8fr 0.8fr;
+  grid-template-rows: 3.5vh 3.5vh 3.5vh 3.5vh 3.5vh 3.5vh 3.5vh;
   height: 100%;
   background-color: #32373e;
   border-radius: 8px;
@@ -190,7 +190,7 @@ body {
   display: flex;
   justify-content: center;
   width: 95%;
-  margin: 0 0 0 0.3vh;
+  margin: 2vh 0 0 0.3vh;
   height: fit-content;
   justify-self: center;
 }
@@ -200,11 +200,15 @@ body {
   border-radius: 500px;
 }
 
+.calendarGrid__point-notCurrent {
+  color: #495058;
+}
+
 #weekHeadings {
   display: flex;
   justify-content: center;
   width: 95%;
-  margin: 0.8vh 0 0 0;
+  margin: 1vh 0 0 0;
   height: fit-content;
   justify-self: center;
 }
@@ -216,6 +220,42 @@ body {
 
 .calendarGrid__point--weekHeading:hover {
   background-color: #11111100;
+}
+
+/* Task Display */
+#taskDisplay {
+  display: flex;
+  flex-flow: column;
+  width: 95%;
+  height: 100%;
+  max-height: 100%;
+  overflow-y: scroll;
+}
+
+.taskDisplayDay {
+  display: flex;
+  flex-flow: column;
+  margin: 2vh 0 0 0;
+}
+
+.taskDisplayDay__nameDateContainer {
+  display: flex;
+  flex-flow: row;
+  justify-content: space-between;
+  width: 15%;
+}
+
+.taskDisplayDay__day {
+  color: #ffffff;
+  font-size: 4.5vh;
+}
+
+.taskDisplayDay__date {
+  height: 2vh;
+  align-self: flex-end;
+  margin: 0 0 2.4vh 0;
+  color: #ffffff;
+  font-size: 2vh;
 }
 
 /*# sourceMappingURL=index.css.map */
