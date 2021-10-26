@@ -17,7 +17,91 @@ function App() {
           <div className="taskDisplayDay__taskRow">
             <div className="task">
               <img className="task__doneMarker--incomplete"></img>
-              <p className="task__description"></p>
+              <p className="task__description">Feed Mimi</p>
+            </div>
+            <div className="task">
+              <img className="task__doneMarker--incomplete"></img>
+              <p className="task__description">Feed Mimi</p>
+            </div>
+            <div className="task">
+              <img className="task__doneMarker--incomplete"></img>
+              <p className="task__description">Feed Mimi</p>
+            </div>
+          </div>
+          <div className="taskDisplayDay__taskRow">
+            <div className="task">
+              <img className="task__doneMarker--incomplete"></img>
+              <p className="task__description">Feed Mimi</p>
+            </div>
+            <div className="task">
+              <img className="task__doneMarker--incomplete"></img>
+              <p className="task__description">Feed Mimi</p>
+            </div>
+            <div className="task">
+              <img className="task__doneMarker--incomplete"></img>
+              <p className="task__description">Feed Mimi</p>
+            </div>
+          </div>
+          <div className="taskDisplayDay__taskRow">
+            <div className="task">
+              <img className="task__doneMarker--incomplete"></img>
+              <p className="task__description">Feed Mimi</p>
+            </div>
+            <div className="task">
+              <img className="task__doneMarker--incomplete"></img>
+              <p className="task__description">Feed Mimi</p>
+            </div>
+            <div className="task">
+              <img className="task__doneMarker--incomplete"></img>
+              <p className="task__description">Feed Mimi</p>
+            </div>
+          </div>
+        </div>
+        <div className="taskDisplayDay">
+          <div className="taskDisplayDay__nameDateContainer">
+            <p className="taskDisplayDay__day">Monday</p>
+            <p className="taskDisplayDay__date">10/4</p>
+          </div>
+          <div className="taskDisplayDay__taskRow">
+            <div className="task">
+              <img className="task__doneMarker--incomplete"></img>
+              <p className="task__description">Feed Mimi</p>
+            </div>
+            <div className="task">
+              <img className="task__doneMarker--incomplete"></img>
+              <p className="task__description">Feed Mimi</p>
+            </div>
+            <div className="task">
+              <img className="task__doneMarker--incomplete"></img>
+              <p className="task__description">Feed Mimi</p>
+            </div>
+          </div>
+          <div className="taskDisplayDay__taskRow">
+            <div className="task">
+              <img className="task__doneMarker--incomplete"></img>
+              <p className="task__description">Feed Mimi</p>
+            </div>
+            <div className="task">
+              <img className="task__doneMarker--incomplete"></img>
+              <p className="task__description">Feed Mimi</p>
+            </div>
+            <div className="task">
+              <img className="task__doneMarker--incomplete"></img>
+              <p className="task__description">Feed Mimi</p>
+            </div>
+          </div>
+          <div className="taskDisplayDay__taskRow">
+            <div className="task">
+              <img className="task__doneMarker--incomplete"></img>
+              <p className="task__description">Feed Mimi</p>
+            </div>
+            <div className="task">
+              <img className="task__doneMarker--incomplete"></img>
+              <p className="task__description">Feed Mimi</p>
+            </div>
+            <div className="task">
+              <img className="task__doneMarker--incomplete"></img>
+              <p className="task__description">Feed Mimi</p>
             </div>
           </div>
         </div>
