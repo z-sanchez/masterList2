@@ -7,7 +7,7 @@ class Calendar extends React.Component {
 
     for (let i = 0; i < 6; ++i) {
       newRows[i] = (
-        <div className="calendarGrid__week">
+        <div className="calendarGrid__week" key={i}>
           <p className="calendarGrid__point">{i}</p>
           <p className="calendarGrid__point">{i}</p>
           <p className="calendarGrid__point">{i}</p>

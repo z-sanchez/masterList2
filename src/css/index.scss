@@ -169,7 +169,7 @@ body {
 
 #calendarGrid {
   display: grid;
-  grid-template-rows:  1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
   height: 85%;
   background-color: #32373e;
   border-radius: 8px;
@@ -259,7 +259,7 @@ body {
 .taskDisplayDay__date {
   height: 2vh;
   align-self: flex-end;
-  margin: 0 0 2.4vh .5vw;
+  margin: 0 0 2.4vh 0.5vw;
   color: #ffffff;
   font-size: 2vh;
 }
@@ -285,11 +285,25 @@ body {
 }
 
 .task__doneMarker--incomplete {
-
+  width: 3.5vh;
+  margin: 0 0 0 3vw;
 }
 
 .task__description {
   color: #32373e;
   font-size: 2.5vh;
-  margin: 0 0 0 5vw;
+  margin: 0 0 0 3vw;
+}
+
+/* scrollBar */
+
+
+/* addButton */
+
+#add {
+  position: absolute;
+  right: 8vw;
+  top: 88vh;
+  width: 2.8vw;
+
 }
