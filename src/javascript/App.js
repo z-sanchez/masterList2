@@ -26,7 +26,7 @@ class App extends React.Component {
   }
 
   createMonths(year) {
-    let monthStructure = { month: null, year: null, dayArray: [null] };
+    let monthStructure = { month: null, year: null, dayArray: [] };
     for (let i = 0; i < 12; i++) {
       let month = Object.assign({}, monthStructure);
       month.month = i + 1;
@@ -52,7 +52,6 @@ class App extends React.Component {
       dayNumber = null;
 
     for (let i = 0; i < 12; i++) {
-      console.log(month[i].month);
       if (
         month[i].month == 1 ||
         month[i].month == 3 ||
@@ -77,6 +76,7 @@ class App extends React.Component {
           dayNumber = 28;
         }
       }
+      month[i].dayArray = [null];
 
       for (let j = 0; j < dayNumber; j++) {
         let day = Object.assign({}, dayStructure);
@@ -88,11 +88,12 @@ class App extends React.Component {
         prevDay = day;
         month[i].dayArray[j] = day;
       }
-      console.log(month[i].dayArray);
     }
     return month;
   }
-
+  //object assign is fucking everything up. Need to figure out if
+  //only arrays are doing a deep copy or if it's eveyr variable.
+  //also add days of the weeks. Read up on Object.assign()
   render() {
     return (
       <div id="appWrapper" onClick={() => this.createYear(2021)}>
