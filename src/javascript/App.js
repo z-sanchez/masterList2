@@ -5,21 +5,36 @@ import Aside from "./Aside";
 import TaskDisplay from "./TaskDisplay";
 
 class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      year: [],
+    };
+  }
+
   createYear(yearNumber) {
-    var year = { name: yearNumber, monthArray: [] };
+    if (this.state.year.length != 0) return;
+    var year = { name: yearNumber, monthArray: [null] };
     year = this.createMonths(year);
-    return year;
+    let array = this.state.year;
+    array.push(year);
+    console.log(year);
+
+    this.setState({
+      year: array,
+    });
   }
 
   createMonths(year) {
-    let monthStructure = { month: null, year: null, dayArray: [] };
+    let monthStructure = { month: null, year: null, dayArray: [null] };
     for (let i = 0; i < 12; i++) {
-      let month = monthStructure.cloneNode(true);
+      let month = Object.assign({}, monthStructure);
       month.month = i + 1;
       month.year = year.name;
-      month.dayArray = this.createDays(month);
       year.monthArray[i] = month;
     }
+
+    year.monthArray = this.createDays(year.monthArray);
 
     return year;
   }
@@ -28,43 +43,59 @@ class App extends React.Component {
     let dayStructure = {
       date: null,
       numberOfTask: 0,
-      taskArray: [],
-      finishedTasks: [],
+      taskArray: [null],
+      finishedTasks: [null],
       prevDay: null,
       nextDay: null,
     };
-    let prevDay = null;
+    let prevDay = null,
+      dayNumber = null;
 
-    if (
-      month.month == 0 ||
-      month.month == 2 ||
-      month.month == 4 ||
-      month.month == 6 ||
-      month.month == 7 ||
-      month.month == 9 ||
-      month.month == 11
-    ) {
-      for (let i = 0; i < 31; i++) {
-        let day = dayStructure.cloneNode("true");
-        day.date = { month: month.month, day: i, year: month.year };
-        //set up nodes pointing to each other for prev and next day (beginning adn end of month should be null)
+    for (let i = 0; i < 12; i++) {
+      console.log(month[i].month);
+      if (
+        month[i].month == 1 ||
+        month[i].month == 3 ||
+        month[i].month == 5 ||
+        month[i].month == 7 ||
+        month[i].month == 8 ||
+        month[i].month == 10 ||
+        month[i].month == 12
+      ) {
+        dayNumber = 31;
+      } else if (
+        month[i].month == 4 ||
+        month[i].month == 6 ||
+        month[i].month == 9 ||
+        month[i].month == 11
+      ) {
+        dayNumber = 30;
+      } else if (month[i].month == 2) {
+        if (month[i].year % 4 == 0) {
+          dayNumber = 29;
+        } else {
+          dayNumber = 28;
+        }
+      }
+
+      for (let j = 0; j < dayNumber; j++) {
+        let day = Object.assign({}, dayStructure);
+        day.date = { month: month[i].month, day: j + 1, year: month[i].year };
         if (prevDay != null) {
-          day.prev = prevDay;
+          day.prevDay = prevDay;
           prevDay.nextDay = day;
         }
         prevDay = day;
-
-        month.dayArray[i] = day;
+        month[i].dayArray[j] = day;
       }
-      //add new month if statements
-      //don't repeat for code loop. Set up looping variable for i to compare to
-      //handle leap year
+      console.log(month[i].dayArray);
     }
+    return month;
   }
 
   render() {
     return (
-      <div id="appWrapper">
+      <div id="appWrapper" onClick={() => this.createYear(2021)}>
         <Header />
         <Aside />
         <TaskDisplay />

@@ -8,7 +8,6 @@ class TaskDisplay extends React.Component {
     return (
       <div id="taskDisplay">
         <TaskDisplayDay />
-
         <div className="addButton">
           <img id="add" alt="addButton" src={addButton}></img>
         </div>
