@@ -1,10 +1,24 @@
 import React from "react";
+import { DateContext } from "../javascript/context";
 import "../css/index.css";
 
 class Calendar extends React.Component {
+  static contextType = DateContext;
+  constructor(props) {
+    super(props);
+    this.state = {
+      currentDay: null,
+    };
+  }
+
+  componentDidMount() {
+    this.setState({
+      currentDay: this.context,
+    });
+  }
+
   fillCalendar() {
     let newRows = [];
-
     for (let i = 0; i < 6; ++i) {
       newRows[i] = (
         <div className="calendarGrid__week" key={i}>
@@ -22,10 +36,12 @@ class Calendar extends React.Component {
   }
 
   render() {
+    let header = "";
+    if (this.state.currentDay != null) { header = String(this.state.currentDay.date.month);}
     return (
       <div id="calendar">
         <div id="calendarHeader" className="calendarHeader--background">
-          <p id="calendarHeader__date">October 2021</p>
+          <p id="calendarHeader__date">{header}</p>
         </div>
         <div id="calendarGrid">
           <div id="weekHeadings">

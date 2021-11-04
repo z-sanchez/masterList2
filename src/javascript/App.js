@@ -3,100 +3,28 @@ import "../css/index.css";
 import Header from "./Header";
 import Aside from "./Aside";
 import TaskDisplay from "./TaskDisplay";
+import { DateContext } from "../javascript/context";
+//import { createYear } from "./createCalendar";
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      year: [],
+      years: [],
+      currentDay: {
+        date: getCurrentDay(),
+        dayOfWeek: "thursday",
+      },
     };
   }
 
-  createYear(yearNumber) {
-    if (this.state.year.length != 0) return;
-    var year = { name: yearNumber, monthArray: [null] };
-    year = this.createMonths(year);
-    let array = this.state.year;
-    array.push(year);
-    console.log(year);
-
-    this.setState({
-      year: array,
-    });
-  }
-
-  createMonths(year) {
-    for (let i = 0; i < 12; i++) {
-      let month = { month: null, year: null, dayArray: [null] };
-      month.month = i + 1;
-      month.year = year.name;
-      year.monthArray[i] = month;
-    }
-
-    year.monthArray = this.createDays(year.monthArray);
-
-    return year;
-  }
-
-  createDays(month) {
-    let prevDay = null,
-      dayNumber = null;
-
-    for (let i = 0; i < 12; i++) {
-      if (
-        month[i].month == 1 ||
-        month[i].month == 3 ||
-        month[i].month == 5 ||
-        month[i].month == 7 ||
-        month[i].month == 8 ||
-        month[i].month == 10 ||
-        month[i].month == 12
-      ) {
-        dayNumber = 31;
-      } else if (
-        month[i].month == 4 ||
-        month[i].month == 6 ||
-        month[i].month == 9 ||
-        month[i].month == 11
-      ) {
-        dayNumber = 30;
-      } else if (month[i].month == 2) {
-        if (month[i].year % 4 == 0) {
-          dayNumber = 29;
-        } else {
-          dayNumber = 28;
-        }
-      }
-      month[i].dayArray = [null];
-
-      for (let j = 0; j < dayNumber; j++) {
-        let day = {
-          date: null,
-          numberOfTask: 0,
-          taskArray: [null],
-          finishedTasks: [null],
-          prevDay: null,
-          nextDay: null,
-        };
-        day.date = { month: month[i].month, day: j + 1, year: month[i].year };
-        if (prevDay != null) {
-          day.prevDay = prevDay;
-          prevDay.nextDay = day;
-        }
-        prevDay = day;
-        month[i].dayArray[j] = day;
-      }
-    }
-    return month;
-  }
-  //object assign is fucking everything up. Need to figure out if
-  //only arrays are doing a deep copy or if it's eveyr variable.
-  //also add days of the weeks. Read up on Object.assign()
   render() {
     return (
-      <div id="appWrapper" onClick={() => this.createYear(2021)}>
+      <div id="appWrapper">
         <Header />
-        <Aside />
+        <DateContext.Provider value={this.state.currentDay}>
+          <Aside />
+        </DateContext.Provider>
         <TaskDisplay />
       </div>
     );
@@ -104,3 +32,45 @@ class App extends React.Component {
 }
 
 export default App;
+
+function getCurrentDay() {
+  return {
+    month: 11,
+    day: 4,
+    year: 2021,
+  };
+}
+
+/*
+
+Next Tasks: 
+
+Build functioning calendar visual:
+- Keep front end code to react, back end seperate JS files
+- add functions to display days properly 
+- darken days that aren't part of current month
+- highlight current day selected
+- Prepare for displaying two different years
+- add arrows to navigate through months
+
+Cosmestic changes:
+- Align logo
+- Add green marker as a flexbox child
+- Fix slider
+
+Day View Selectors
+- Create css edits for different views
+- Write it into back end code for Aside functions 
+
+Add Task window:
+- Create a form for add task window
+- store task in database (mySQL)
+- probably need to implement node.js to create front end and back end stuff
+
+Weather and Time module:
+- Find APIs and makes code
+
+Other:
+- add comments
+
+*/
