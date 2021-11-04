@@ -26,9 +26,8 @@ class App extends React.Component {
   }
 
   createMonths(year) {
-    let monthStructure = { month: null, year: null, dayArray: [] };
     for (let i = 0; i < 12; i++) {
-      let month = Object.assign({}, monthStructure);
+      let month = { month: null, year: null, dayArray: [null] };
       month.month = i + 1;
       month.year = year.name;
       year.monthArray[i] = month;
@@ -40,14 +39,6 @@ class App extends React.Component {
   }
 
   createDays(month) {
-    let dayStructure = {
-      date: null,
-      numberOfTask: 0,
-      taskArray: [null],
-      finishedTasks: [null],
-      prevDay: null,
-      nextDay: null,
-    };
     let prevDay = null,
       dayNumber = null;
 
@@ -79,7 +70,14 @@ class App extends React.Component {
       month[i].dayArray = [null];
 
       for (let j = 0; j < dayNumber; j++) {
-        let day = Object.assign({}, dayStructure);
+        let day = {
+          date: null,
+          numberOfTask: 0,
+          taskArray: [null],
+          finishedTasks: [null],
+          prevDay: null,
+          nextDay: null,
+        };
         day.date = { month: month[i].month, day: j + 1, year: month[i].year };
         if (prevDay != null) {
           day.prevDay = prevDay;
