@@ -4,12 +4,10 @@
 function createYear(yearNumber) {
   var year = { name: yearNumber, monthArray: [null] };
   year = createMonths(year);
-  let array = [];
-  array.push(year);
-  console.log(array);
+  return year;
 }
 
-//fills year object with months 
+//fills year object with months
 function createMonths(year) {
   for (let i = 0; i < 12; i++) {
     let month = { month: null, year: null, dayArray: [null] };

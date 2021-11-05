@@ -3,17 +3,18 @@ import "../css/index.css";
 import Header from "./Header";
 import Aside from "./Aside";
 import TaskDisplay from "./TaskDisplay";
+import { createYear } from "./createCalendar";
+import { findDayOfWeekday } from "../javascript/dateFormatting";
 import { DateContext } from "../javascript/context";
-//import { createYear } from "./createCalendar";
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      years: [],
+      years: [createYear(2021)],
       currentDay: {
         date: getCurrentDay(),
-        dayOfWeek: "thursday",
+        dayOfWeek: findDayOfWeekday(getWeekday()),
       },
     };
   }
@@ -33,20 +34,32 @@ class App extends React.Component {
 
 export default App;
 
+/* Need to move the functions sometime */
+
+//returns object containing tradional numbers for for months and days (ex. Nov = 11)
 function getCurrentDay() {
+  const date = new Date();
   return {
-    month: 11,
-    day: 4,
-    year: 2021,
+    month: date.getMonth() + 1,
+    day: date.getDate(),
+    year: date.getFullYear(),
   };
+}
+
+//returns weekday number (ex. monday = 0)
+function getWeekday() {
+  const date = new Date();
+  return date.getDay();
 }
 
 /*
 
 Next Tasks: 
 
+Note: Probably need to have consistency with month indexing and day indexing (does 0 = Jan or null)
+NOte: Keep front end code to react, back end seperate JS files
+
 Build functioning calendar visual:
-- Keep front end code to react, back end seperate JS files
 - add functions to display days properly 
 - darken days that aren't part of current month
 - highlight current day selected

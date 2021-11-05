@@ -1,5 +1,6 @@
 import React from "react";
 import { DateContext } from "../javascript/context";
+import { printHeaderDate } from "./dateFormatting";
 import "../css/index.css";
 
 class Calendar extends React.Component {
@@ -7,7 +8,10 @@ class Calendar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentDay: null,
+      currentDay: {
+        date: { month: "Month", day: 0, year: 0 },
+        dayOfWeek: "weekday",
+      },
     };
   }
 
@@ -36,12 +40,15 @@ class Calendar extends React.Component {
   }
 
   render() {
-    let header = "";
-    if (this.state.currentDay != null) { header = String(this.state.currentDay.date.month);}
     return (
       <div id="calendar">
         <div id="calendarHeader" className="calendarHeader--background">
-          <p id="calendarHeader__date">{header}</p>
+          <p id="calendarHeader__date">
+            {printHeaderDate(
+              this.state.currentDay.date.month,
+              this.state.currentDay.date.year
+            )}
+          </p>
         </div>
         <div id="calendarGrid">
           <div id="weekHeadings">
