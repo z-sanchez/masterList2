@@ -19,7 +19,10 @@ class Calendar extends React.Component {
   componentDidMount() {
     let contextData = this.context;
     this.setState({
-      currentDay: {date: {day: 6, month: 10, year: 2021}, dayOfWeek: "Wednesday"},
+      currentDay: {
+        date: contextData.currentDay.date,
+        dayOfWeek: contextData.currentDay.dayOfWeek,
+      },
       years: contextData.year,
     });
   }
@@ -40,7 +43,9 @@ class Calendar extends React.Component {
         this.state.currentDay.date.day
       ),
       nodeDates = [],
-      prevDateNode = null;
+      prevDateNode = null,
+      nextDateNode = null,
+      dateCounter = -1;
 
     let daysBeforeMonth = weekdays.indexOf(startOfMonth);
     let startOfMonthNode = getDateNode(
@@ -52,29 +57,31 @@ class Calendar extends React.Component {
     prevDateNode = startOfMonthNode;
 
     for (let i = 0; i < daysBeforeMonth; ++i) {
-      //fill nodeDates with previous month's dates to be rendered
-      nodeDates[i] = prevDateNode.prevDay.date;
+      nodeDates[i] = prevDateNode.prevDay.date.day;
       prevDateNode = prevDateNode.prevDay;
     }
-    nodeDates = nodeDates.reverse();
-   
 
-    for (let i = 0; i < 42; ++i) {
+    nodeDates = nodeDates.reverse();
+    nextDateNode = startOfMonthNode;
+
+    for (let i = nodeDates.length; i < 42; ++i) {
       //edit counter. we want nodeDates to equal 42 by the end. Add rest of dates here
-      console.log();
+      if (nextDateNode == undefined) break;
+      nodeDates[i] = nextDateNode.date.day;
+      nextDateNode = nextDateNode.nextDay;
     }
 
     //render the calendar with found odeDates here
     for (let i = 0; i < 6; ++i) {
       newRows[i] = (
         <div className="calendarGrid__week" key={i}>
-          <p className="calendarGrid__point">{i}</p>
-          <p className="calendarGrid__point">{i}</p>
-          <p className="calendarGrid__point">{i}</p>
-          <p className="calendarGrid__point">{i}</p>
-          <p className="calendarGrid__point">{i}</p>
-          <p className="calendarGrid__point">{i}</p>
-          <p className="calendarGrid__point">{i}</p>
+          <p className="calendarGrid__point">{nodeDates[++dateCounter]}</p>
+          <p className="calendarGrid__point">{nodeDates[++dateCounter]}</p>
+          <p className="calendarGrid__point">{nodeDates[++dateCounter]}</p>
+          <p className="calendarGrid__point">{nodeDates[++dateCounter]}</p>
+          <p className="calendarGrid__point">{nodeDates[++dateCounter]}</p>
+          <p className="calendarGrid__point">{nodeDates[++dateCounter]}</p>
+          <p className="calendarGrid__point">{nodeDates[++dateCounter]}</p>
         </div>
       );
     }

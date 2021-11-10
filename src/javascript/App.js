@@ -64,7 +64,6 @@ Note: Probably need to have consistency with month indexing and day indexing (do
 NOte: Keep front end code to react, back end seperate JS files
 
 Build functioning calendar visual:
-- add functions to display days properly 
 - darken days that aren't part of current month
 - highlight current day selected
 - Prepare for displaying two different years
@@ -73,7 +72,7 @@ Build functioning calendar visual:
 Cosmestic changes:
 - Align logo
 - Add green marker as a flexbox child
-- Fix slider
+- Fix scrollbar
 
 Day View Selectors
 - Create css edits for different views
