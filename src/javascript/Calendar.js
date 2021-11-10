@@ -1,6 +1,6 @@
 import React from "react";
 import { DateContext } from "../javascript/context";
-import { printHeaderDate } from "./dateFormatting";
+import { printHeaderDate, findFirstOfMonth } from "./dateFormatting";
 import "../css/index.css";
 
 class Calendar extends React.Component {
@@ -12,17 +12,59 @@ class Calendar extends React.Component {
         date: { month: "Month", day: 0, year: 0 },
         dayOfWeek: "weekday",
       },
+      years: [null],
     };
   }
 
   componentDidMount() {
+    let contextData = this.context;
     this.setState({
-      currentDay: this.context,
+      currentDay: {date: {day: 6, month: 10, year: 2021}, dayOfWeek: "Wednesday"},
+      years: contextData.year,
     });
   }
 
   fillCalendar() {
-    let newRows = [];
+    let newRows = [],
+      weekdays = [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday",
+      ],
+      startOfMonth = findFirstOfMonth(
+        this.state.currentDay.dayOfWeek,
+        this.state.currentDay.date.day
+      ),
+      nodeDates = [],
+      prevDateNode = null;
+
+    let daysBeforeMonth = weekdays.indexOf(startOfMonth);
+    let startOfMonthNode = getDateNode(
+      this.state.years[0],
+      this.state.currentDay.date.month - 1,
+      0
+    );
+
+    prevDateNode = startOfMonthNode;
+
+    for (let i = 0; i < daysBeforeMonth; ++i) {
+      //fill nodeDates with previous month's dates to be rendered
+      nodeDates[i] = prevDateNode.prevDay.date;
+      prevDateNode = prevDateNode.prevDay;
+    }
+    nodeDates = nodeDates.reverse();
+   
+
+    for (let i = 0; i < 42; ++i) {
+      //edit counter. we want nodeDates to equal 42 by the end. Add rest of dates here
+      console.log();
+    }
+
+    //render the calendar with found odeDates here
     for (let i = 0; i < 6; ++i) {
       newRows[i] = (
         <div className="calendarGrid__week" key={i}>
@@ -103,3 +145,9 @@ class Calendar extends React.Component {
 }
 
 export default Calendar;
+
+function getDateNode(yearArray, month, day) {
+  if (yearArray == null) return;
+  let node = yearArray.monthArray[month].dayArray[day];
+  return node;
+}

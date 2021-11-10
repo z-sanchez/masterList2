@@ -44,9 +44,37 @@ function nextDayOfWeek(prevDayName) {
   }
 }
 
+//returns previous day of the week bassed of a given weekday name
+function prevDayOfWeek(dayName) {
+  dayName = dayName.charAt(0).toUpperCase() + dayName.slice(1);
+  let locater = weekDays.indexOf(dayName);
+  if (weekDays[locater - 1] == null) {
+    return weekDays[6];
+  } else {
+    return weekDays[locater - 1];
+  }
+}
+
 //return month and year together for header on calendar
 function printHeaderDate(monthNum, year) {
   return findMonthName(monthNum) + " " + year;
 }
 
-export { findMonthName, nextDayOfWeek, printHeaderDate, findDayOfWeekday };
+function findFirstOfMonth(weekDay, dayNum) {
+  let startOfMonth = weekDay;
+
+  while (dayNum > 1) {
+    startOfMonth = prevDayOfWeek(startOfMonth);
+    --dayNum;
+  }
+
+  return startOfMonth;
+}
+
+export {
+  findMonthName,
+  nextDayOfWeek,
+  printHeaderDate,
+  findDayOfWeekday,
+  findFirstOfMonth,
+};

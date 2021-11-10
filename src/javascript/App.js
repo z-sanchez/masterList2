@@ -20,10 +20,14 @@ class App extends React.Component {
   }
 
   render() {
+    let contextData = {
+      currentDay: this.state.currentDay,
+      year: this.state.years,
+    };
     return (
       <div id="appWrapper">
         <Header />
-        <DateContext.Provider value={this.state.currentDay}>
+        <DateContext.Provider value={contextData}>
           <Aside />
         </DateContext.Provider>
         <TaskDisplay />
