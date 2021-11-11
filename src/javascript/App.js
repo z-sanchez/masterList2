@@ -64,10 +64,9 @@ Note: Probably need to have consistency with month indexing and day indexing (do
 NOte: Keep front end code to react, back end seperate JS files
 
 Build functioning calendar visual:
-- darken days that aren't part of current month
-- highlight current day selected
-- Prepare for displaying two different years
+- Prepare for displaying two different years (back-end work with years. Create database)
 - add arrows to navigate through months
+- add event listener for jumping to date on task list
 
 Cosmestic changes:
 - Align logo

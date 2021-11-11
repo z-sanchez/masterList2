@@ -28,8 +28,8 @@ class Calendar extends React.Component {
   }
 
   fillCalendar() {
-    let newRows = [],
-      weekdays = [
+    let newRows = [null], //where rows to be rendered will be stored
+      weekdays = [ //used for finding how many days before day one of month need to be rendered
         "Monday",
         "Tuesday",
         "Wednesday",
@@ -41,47 +41,86 @@ class Calendar extends React.Component {
       startOfMonth = findFirstOfMonth(
         this.state.currentDay.dayOfWeek,
         this.state.currentDay.date.day
-      ),
-      nodeDates = [],
+      ), //sets the weekday name for the start of the month
+      nodeDates = [], //this array will carry the values to be shown on each calendar node
       prevDateNode = null,
       nextDateNode = null,
       dateCounter = -1;
 
-    let daysBeforeMonth = weekdays.indexOf(startOfMonth);
+    let daysBeforeMonth = weekdays.indexOf(startOfMonth); //finds days before month starts that need to be rendered
     let startOfMonthNode = getDateNode(
       this.state.years[0],
       this.state.currentDay.date.month - 1,
       0
-    );
+    ); //returns actual date node
 
     prevDateNode = startOfMonthNode;
 
+    //loops through days before 1st of month to find their day values
     for (let i = 0; i < daysBeforeMonth; ++i) {
       nodeDates[i] = prevDateNode.prevDay.date.day;
       prevDateNode = prevDateNode.prevDay;
     }
 
-    nodeDates = nodeDates.reverse();
+    nodeDates = nodeDates.reverse(); //reverses nodeDates so dates gathered so far read in correct order
     nextDateNode = startOfMonthNode;
 
+    //finds all the next days day values
     for (let i = nodeDates.length; i < 42; ++i) {
-      //edit counter. we want nodeDates to equal 42 by the end. Add rest of dates here
       if (nextDateNode == undefined) break;
       nodeDates[i] = nextDateNode.date.day;
       nextDateNode = nextDateNode.nextDay;
     }
 
-    //render the calendar with found odeDates here
+
+    let firstRendered = false,
+      lastRendered = false;
+
+    //loops to gather 6 calendar rows
     for (let i = 0; i < 6; ++i) {
-      newRows[i] = (
-        <div className="calendarGrid__week" key={i}>
-          <p className="calendarGrid__point">{nodeDates[++dateCounter]}</p>
-          <p className="calendarGrid__point">{nodeDates[++dateCounter]}</p>
-          <p className="calendarGrid__point">{nodeDates[++dateCounter]}</p>
-          <p className="calendarGrid__point">{nodeDates[++dateCounter]}</p>
-          <p className="calendarGrid__point">{nodeDates[++dateCounter]}</p>
-          <p className="calendarGrid__point">{nodeDates[++dateCounter]}</p>
-          <p className="calendarGrid__point">{nodeDates[++dateCounter]}</p>
+      let row = [null]; 
+      for (let j = 0; j < 7; ++j) { //grabs an entire week
+        let renderNode = null;
+        if (nodeDates[dateCounter + 1] == 1 && firstRendered == false) { //if the 1st of month is found
+          firstRendered = true;
+          renderNode = (
+            <p className="calendarGrid__point calendarGrid__point--currentDay">
+              {nodeDates[++dateCounter]}
+            </p>
+          );
+        } else if (nodeDates[dateCounter + 1] == 1 && firstRendered == true) { //if first of the next month is found
+          renderNode = (
+            <p className="calendarGrid__point calendarGrid__point-notCurrent">
+              {nodeDates[++dateCounter]}
+            </p>
+          );
+          lastRendered = true;
+        } else if (lastRendered == true) //if the 1st of the next month has already been found
+          renderNode = (
+            <p className="calendarGrid__point calendarGrid__point-notCurrent">
+              {nodeDates[++dateCounter]}
+            </p>
+          );
+        else if (firstRendered == false) {//if the 1st of month has yet to start
+          renderNode = (
+            <p className="calendarGrid__point calendarGrid__point-notCurrent">
+              {nodeDates[++dateCounter]}
+            </p>
+          );
+        } else {
+          renderNode = (
+            <p className="calendarGrid__point">
+              {nodeDates[++dateCounter]}
+            </p>
+          );
+        }
+        row[j] = renderNode; 
+      }
+      newRows[i] = ( //moves gathered rows into newRows
+        <div className="calendarGrid__week">
+          {row.filter((e) => {
+            return e;
+          })}
         </div>
       );
     }
